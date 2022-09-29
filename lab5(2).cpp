@@ -26,12 +26,10 @@ void printM(int matrix[4][4])
 {
     unsigned n = 4;
     int len;
-    string p;
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
         {
-            p = "";
             len = to_string(matrix[i][j]).length();
             cout << string(4 - len, ' ') << matrix[i][j];
         }
@@ -46,7 +44,6 @@ int main()
  
     const unsigned n = 4, m = 5;
     int matrixA[n][m];
- 
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
