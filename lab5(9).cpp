@@ -22,7 +22,7 @@ void change_direction(int& x, int& y, int& di, int& steps, int directions[4][2])
 	steps = 0;
 }
 
-void spiral(int N)
+void spiral(unsigned N)
 {
 	int** matrix = new int* [N]; // динамический массив
 	for (int i = 0; i < N; ++i)
