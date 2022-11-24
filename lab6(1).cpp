@@ -5,23 +5,21 @@
 using namespace std;
 struct Time {
     unsigned days, hours, minutes, seconds;
-    Time(unsigned _days, unsigned _hours, unsigned _minutes, unsigned _seconds) {
+    Time(unsigned _days = 0, unsigned _hours = 0, unsigned _minutes = 0, unsigned _seconds = 0) {
         days = _days;
         hours = _hours;
         minutes = _minutes;
         seconds = _seconds;
     }
 };
-void print(Time& time){
-    unsigned time_spans[4] = { time.days, time.hours, time.minutes, time.seconds };
+void print(Time& time) {
+    unsigned _case, time_spans[4] = { time.days, time.hours, time.minutes, time.seconds };
     string cases[4][3] = { { "дня", "день", "дней"},{"часа", "час", "часов"},{"минуты", "минута", "минут"},{"секунды", "секунда", "секунд"} };
     for (int i = 0; i < 4; ++i) {
-        if (time_spans[i] < 4 && time_spans[i] > 1)
-            cout << time_spans[i] << " " << cases[i][0] << " ";
-        else if (time_spans[i] == 1)
-            cout << time_spans[i] << " " << cases[i][1] << " ";
-        else
-            cout << time_spans[i] << " " << cases[i][2] << " ";
+        if (time_spans[i] < 4 && time_spans[i] > 1) _case = 0;
+        else if (time_spans[i] == 1) _case = 1;
+        else _case = 2;
+        cout << time_spans[i] << " " << cases[i][_case] << " ";
     }
     cout << endl;
 }
@@ -36,7 +34,7 @@ Time difference(Time& A, Time& B) {
     Time C(d, h, m, s);
     return C;
 }
-int main(){
+void main() {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
     cout << "Введите первое время через пробел: дни, часы, минуты, секунды" << endl;
@@ -53,5 +51,4 @@ int main(){
     print(B);
     cout << "\nРазница: ";
     print(C);
-    return 0;
 }
