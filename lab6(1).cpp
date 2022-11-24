@@ -1,15 +1,15 @@
 ﻿#include <iostream>
 #include <string>
 #include <cmath>
-#include <Windows.h>
 using namespace std;
 struct Time {
-    unsigned days, hours, minutes, seconds;
+    unsigned days, hours, minutes, seconds, total;
     Time(unsigned _days = 0, unsigned _hours = 0, unsigned _minutes = 0, unsigned _seconds = 0) {
         days = _days;
         hours = _hours;
         minutes = _minutes;
         seconds = _seconds;
+        total = ((_days * 24 + _hours) * 60 + _minutes) * 60 + _seconds;
     }
 };
 void print(Time& time) {
@@ -24,9 +24,7 @@ void print(Time& time) {
     cout << endl;
 }
 Time difference(Time& A, Time& B) {
-    int timeA = ((A.days * 24 + A.hours) * 60 + A.minutes) * 60 + A.seconds;
-    int timeB = ((B.days * 24 + B.hours) * 60 + B.minutes) * 60 + B.seconds;
-    unsigned diff = abs(timeA - timeB);
+    unsigned diff = abs(int(A.total - B.total));
     unsigned s = diff % 60;
     unsigned m = (diff % (60 * 60)) / 60;
     unsigned h = (diff % (60 * 60 * 24)) / (60 * 60);
@@ -35,8 +33,7 @@ Time difference(Time& A, Time& B) {
     return C;
 }
 void main() {
-    SetConsoleOutputCP(1251);
-    SetConsoleCP(1251);
+    setlocale(LC_ALL, "RUS");
     cout << "Введите первое время через пробел: дни, часы, минуты, секунды" << endl;
     unsigned d, h, m, s;
     cin >> d >> h >> m >> s;
