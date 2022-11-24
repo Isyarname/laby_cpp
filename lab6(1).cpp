@@ -20,11 +20,11 @@ void print(Time& time){
     string cases[4][3] = { { "дня", "день", "дней"},{"часа", "час", "часов"},{"минуты", "минута", "минут"},{"секунды", "секунда", "секунд"} };
     for (int i = 0; i < 4; ++i) {
         if (time_spans[i] < 4 && time_spans[i] > 1)
-            cout << time_spans[i] << cases[i][0] << " ";
+            cout << time_spans[i] << " " << cases[i][0] << " ";
         else if (time_spans[i] == 1)
-            cout << time_spans[i] << cases[i][1] << " ";
+            cout << time_spans[i] << " " << cases[i][1] << " ";
         else
-            cout << time_spans[i] << cases[i][2] << " ";
+            cout << time_spans[i] << " " << cases[i][2] << " ";
     }
     cout << endl;
 }
