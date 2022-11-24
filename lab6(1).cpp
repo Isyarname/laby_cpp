@@ -4,10 +4,7 @@
 #include <Windows.h>
 using namespace std;
 struct Time {
-    unsigned days;
-    unsigned hours;
-    unsigned minutes;
-    unsigned seconds;
+    unsigned days, hours, minutes, seconds;
     Time(unsigned _days, unsigned _hours, unsigned _minutes, unsigned _seconds) {
         days = _days;
         hours = _hours;
