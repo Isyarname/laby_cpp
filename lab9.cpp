@@ -111,50 +111,50 @@ int main()
     SetConsoleCP(1251);
     Queue Q[5];
     int queue_index = 0;
-    int vybor;
+    int option;
     while (true)
     {
         cout << "Что сделать? (0 - завершить программу, 1 - тест, 2 - создать очередь, \n3 - скопировать очередь, 4 - добавить элемент, 5 - вывести очередь, \n6 - выбрать очередь (0-4), 7 - вывести номер выбранной очереди, 8 - удалить очередь)\n: ";
-        cin >> vybor;
-        if (vybor == 0)
+        cin >> option;
+        if (option == 0)
         {
             return 0;
         }
-        else if (vybor == 1)
+        else if (option == 1)
         {
             test();
             cout << endl << endl;
         }
-        else if (vybor == 2)
+        else if (option == 2)
         {
             init(Q[queue_index]);
             cout << endl;
         }
-        else if (vybor == 3)
+        else if (option == 3)
         {
             copy(Q[queue_index], Q[queue_index + 1]);
             cout << "Очередь " << queue_index << " скопирована в очередь " << queue_index + 1 << endl << endl;
             ++queue_index;
         }
-        else if (vybor == 4)
+        else if (option == 4)
         {
             add(Q[queue_index]);
         }
-        else if (vybor == 5)
+        else if (option == 5)
         {
             print(Q[queue_index]);
         }
-        else if (vybor == 6)
+        else if (option == 6)
         {
             cout << "Введите номер очереди: ";
             cin >> queue_index;
             cout << endl << endl;
         }
-        else if (vybor == 7)
+        else if (option == 7)
         {
             cout << queue_index << endl << endl;
         }
-        else if (vybor == 8)
+        else if (option == 8)
         {
             delete_Queue(Q[queue_index]);
             cout << "Очередь " << queue_index << " удалена \n\n";
