@@ -1,17 +1,15 @@
 ﻿#include <iostream>
 #include <Windows.h>
-
 using namespace std;
-
-struct Node {
+struct Node
+{
     double data;
     Node* next;
 };
-
-struct Fifo {
+struct Queue
+{
     Node* Head;
 };
-
 Node* create_Node(double a = 0.0)
 {
     Node* temp;
@@ -20,13 +18,11 @@ Node* create_Node(double a = 0.0)
     temp->data = a;
     return temp;
 }
-
-void init(Fifo& A)
+void init(Queue& A)
 {
     A.Head = NULL;
 }
-
-void push_back(Fifo& A, double data = 0.0)
+void push_back(Queue& A, double data = 0.0)
 {
     Node* temp = create_Node(data);
     if (A.Head == NULL)
@@ -34,17 +30,17 @@ void push_back(Fifo& A, double data = 0.0)
     else
     {
         Node* it = A.Head;
-        while (it->next != NULL)
+        while (it->next)//(*it).next
         {
             it = it->next;
         }
         it->next = temp;
     }
 }
-
-void print(const Fifo& A)
+void print(const Queue& A)
 {
-    if (A.Head) {
+    if (A.Head)
+    {
         Node* it = A.Head;
         while (it != NULL) {
             cout << it->data << " ";
@@ -52,18 +48,16 @@ void print(const Fifo& A)
         }
     }
     else
-        cout << "Fifo is empty!";
+        cout << "Пусто!!!!!!!!!!!!!1111одинодинодин11!11!";
     cout << endl << endl;
 }
-
-double top(const Fifo& A)
+double top(const Queue& A)
 {
-    if (!A.Head)
+    if (!A.Head)//A.Head != 0
         return 0;
     return A.Head->data;
 }
-
-void pop(Fifo& A)
+void pop(Queue& A)
 {
     if (A.Head)
     {
@@ -72,34 +66,28 @@ void pop(Fifo& A)
         A.Head = temp;
     }
 }
-
-void delete_Fifo(Fifo& A)
+void delete_Queue(Queue& A)
 {
     while (A.Head)
         pop(A);
-    cout << "Fifo is empty\n";
+    cout << "Пусто!!!!!!!!!!!!!1111одинодинодин11!11!\n";
 }
-
-void copy(Fifo& A, Fifo& B)
+void copy(Queue& A, Queue& B)
 {
     init(B);
-
     Node* itA = A.Head;
     B.Head = create_Node(itA->data);
-
     Node* itB = B.Head;
-    
-    while (itA->next != NULL)
+    while (itA->next)
     {
         itA = itA->next;
         itB->next = create_Node(itA->data);
         itB = itB->next;
     }
 }
-
 void test()
 {
-    Fifo A;
+    Queue A;
     init(A);
     push_back(A, 10.3);
     push_back(A);
@@ -107,10 +95,9 @@ void test()
     print(A);
     pop(A);
     print(A);
-    delete_Fifo(A);
+    delete_Queue(A);
 }
-
-void add(Fifo& A)
+void add(Queue& A)
 {
     double data = 0.0;
     cout << "Введите значение: ";
@@ -118,17 +105,13 @@ void add(Fifo& A)
     push_back(A, data);
     cout << "Элемент " << data << " добавлен \n\n";
 }
-
-
 int main()
 {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
-
-    Fifo F[5];
-    unsigned i = 0;
+    Queue Q[5];
+    int queue_index = 0;
     int vybor;
-
     while (true)
     {
         cout << "Что сделать? (0 - завершить программу, 1 - тест, 2 - создать очередь, \n3 - скопировать очередь, 4 - добавить элемент, 5 - вывести очередь, \n6 - выбрать очередь (0-4), 7 - вывести номер выбранной очереди, 8 - удалить очередь)\n: ";
@@ -144,37 +127,37 @@ int main()
         }
         else if (vybor == 2)
         {
-            init(F[i]);
+            init(Q[queue_index]);
             cout << endl;
         }
         else if (vybor == 3)
         {
-            copy(F[i], F[i + 1]);
-            cout << "Очередь " << i << " скопирована в очередь " << i + 1 << endl << endl;
-            i += 1;
+            copy(Q[queue_index], Q[queue_index + 1]);
+            cout << "Очередь " << queue_index << " скопирована в очередь " << queue_index + 1 << endl << endl;
+            ++queue_index;
         }
         else if (vybor == 4)
         {
-            add(F[i]);
+            add(Q[queue_index]);
         }
         else if (vybor == 5)
         {
-            print(F[i]);
+            print(Q[queue_index]);
         }
         else if (vybor == 6)
         {
             cout << "Введите номер очереди: ";
-            cin >> i;
+            cin >> queue_index;
             cout << endl << endl;
         }
         else if (vybor == 7)
         {
-            cout << i << endl << endl;
+            cout << queue_index << endl << endl;
         }
         else if (vybor == 8)
         {
-            delete_Fifo(F[i]);
-            cout << "Очередь " << i << " удалена \n\n";
+            delete_Queue(Q[queue_index]);
+            cout << "Очередь " << queue_index << " удалена \n\n";
         }
     }
 }
